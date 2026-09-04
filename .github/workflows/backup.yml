@@ -1,0 +1,15 @@
+name: PythonAnywhere Backup
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call PythonAnywhere backup
+        run: |
+          curl -f --max-time 120 "https://natiboy922.pythonanywhere.com/run-backup/yourNameHere123"
