@@ -1,4 +1,4 @@
-name: PythonAnywhere Backup
+name: PythonAnywhere Tasks
 
 on:
   schedule:
@@ -10,6 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Call PythonAnywhere backup
+      - name: Run backup
         run: |
-          curl -i --max-time 120 "https://natiboy922.pythonanywhere.com/run-backup/yourNameHere123"
+          curl -f --max-time 120 "https://natiboy922.pythonanywhere.com/run-backup/yourNameHere123"
+
+  reminder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run reminder every 3 hours
+        run: |
+          HOUR=$(date -u +%H)
+
+          if [ $((10#$HOUR % 3)) -eq 0 ]; then
+            curl -f --max-time 120 "https://natiboy922.pythonanywhere.com/run-reminder-check/yourNameHere123"
+          else
+            echo "Skipping reminder - not a 3-hour interval."
+          fi
