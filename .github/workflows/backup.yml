@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Call PythonAnywhere backup
         run: |
-          curl -f --max-time 120 "https://natiboy922.pythonanywhere.com/run-backup/yourNameHere123"
+          curl -i --max-time 120 "https://natiboy922.pythonanywhere.com/run-backup/yourNameHere123"
