@@ -1,29 +1,29 @@
 name: PythonAnywhere Tasks
-
 on:
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch:
-
 jobs:
   backup:
     runs-on: ubuntu-latest
-
     steps:
       - name: Run backup
         run: |
           curl -f --max-time 120 "https://natiboy922.pythonanywhere.com/run-backup/yourNameHere123"
-
   reminder:
     runs-on: ubuntu-latest
-
     steps:
       - name: Run reminder every 3 hours
         run: |
           HOUR=$(date -u +%H)
-
           if [ $((10#$HOUR % 3)) -eq 0 ]; then
             curl -f --max-time 120 "https://natiboy922.pythonanywhere.com/run-reminder-check/yourNameHere123"
           else
             echo "Skipping reminder - not a 3-hour interval."
           fi
+  daily_messages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check daily auto-post messages
+        run: |
+          curl -f --max-time 120 "https://nati22.pythonanywhere.com/cron/daily-messages?key=nati2026secret"
